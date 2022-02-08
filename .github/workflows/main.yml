@@ -63,6 +63,13 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
           cache: maven
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v2.1.0
+        with:
+            # Artifact name
+            name: common-service
+            # Destination path
+            path: /
       - name: Build Java packages for docker
         run: mvn clean package --file pom.xml
       - name: Build and run docker containers
