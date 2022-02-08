@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.kevogaba</groupId>
 	<artifactId>common-service</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<name>common-service</name>
 	<description>common-service</description>
 	<properties>
@@ -73,7 +73,7 @@
 		<repository>
 			<id>github</id>
 			<name>GitHub Packages</name>
-			<url>https://maven.pkg.github.com/kevogaba/spring-eventdriven-microservice</url>
+			<url>https://maven.pkg.github.com/kevogaba/springboot-eventdriven-microservice</url>
 		</repository>
 	</distributionManagement>
 
