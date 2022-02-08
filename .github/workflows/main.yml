@@ -17,6 +17,9 @@ jobs:
     permissions:
       contents: read
       packages: write
+    defaults:
+      run:
+        working-directory: common-service
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11 for publishing to GitHub Packages
