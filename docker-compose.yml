@@ -1,0 +1,105 @@
+version: "3"
+
+networks:
+  service-net:
+    driver: bridge
+
+services:
+
+  docker-axonserver:
+    image: axoniq/axonserver:4.5.10-jdk-11-dev
+    environment:
+      ADVERTISED_HOST: localhost
+      ADVERTISED_PORT: 8124
+    ports:
+      - "8124:8124"
+    networks:
+      - service-net
+
+
+  common-service:
+    container_name: common-service
+    build:
+      context: common-service
+      dockerfile: Dockerfile
+    image: "common-service:latest"
+    networks:
+      - service-net
+    ports:
+      - "9090:9090"
+
+
+  product-service:
+    container_name: product-service
+    build:
+      context: product-service
+      dockerfile: Dockerfile
+    image: "product-service:latest"
+    networks:
+      - service-net
+    ports:
+      - "8081:8081"
+    depends_on:
+      - docker-axonserver
+      - common-service
+
+
+
+  order-service:
+    container_name: order-service
+    build:
+      context: order-service
+      dockerfile: Dockerfile
+    image: "order-service:latest"
+    networks:
+      - service-net
+    ports:
+      - "9091:9091"
+    depends_on:
+      - docker-axonserver
+      - common-service
+
+
+  user-service:
+    container_name: user-service
+    build:
+      context: user-service
+      dockerfile: Dockerfile
+    image: "user-service:latest"
+    networks:
+      - service-net
+    ports:
+      - "9092:9092"
+    depends_on:
+      - docker-axonserver
+      - common-service
+
+
+  payment-service:
+    container_name: payment-service
+    build:
+      context: payment-service
+      dockerfile: Dockerfile
+    image: "payment-service:latest"
+    networks:
+      - service-net
+    ports:
+      - "9093:9093"
+    depends_on:
+      - docker-axonserver
+      - common-service
+
+
+  shipment-service:
+    container_name: shipment-service
+    build:
+      context: shipment-service
+      dockerfile: Dockerfile
+    image: "shipment-service:latest"
+    networks:
+      - service-net
+    ports:
+      - "9094:9094"
+    depends_on:
+      - docker-axonserver
+      - common-service
