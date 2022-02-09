@@ -78,7 +78,7 @@ jobs:
       - name: Build Java packages for docker
         run: mvn -B -Pgithub package --file pom.xml
         env:
-          WORKFLOW_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+          # WORKFLOW_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Build and run docker containers
