@@ -74,18 +74,16 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
           cache: maven
-      - name: Install packages
-        run: mvn install
-        env:
-          WORKFLOW_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
       - name: Build Java packages for docker
-        run: mvn clean package --file pom.xml
+        run: mvn -B -Pgithub package --file pom.xml
         env:
           WORKFLOW_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
       - name: Build and run docker containers
         run: docker-compose -f "docker-compose.yml" up -d --build
+        
       - name: Stop the containers
         if: always()
         run: docker-compose -f "docker-compose.yml" down
