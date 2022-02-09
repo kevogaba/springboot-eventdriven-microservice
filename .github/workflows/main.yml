@@ -32,6 +32,14 @@ jobs:
         run: mvn --batch-mode deploy --file pom.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and test projects
+        working-directory: github-actions-java-maven
+        run: mvn -B verify
+      - name: Upload Maven build artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifact.jar
+          path: github-actions-java-maven/target/github-actions-java-maven.jar
 
 
   test:
