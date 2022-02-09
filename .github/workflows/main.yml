@@ -33,14 +33,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and test projects
-        # working-directory: github-actions-java-maven
-        run: mvn -B verify
+        run: mvn --batch-mode --update-snapshots verify
+        
+      - run: mkdir staging && cp target/*.jar staging
+      
       - name: Upload Maven build artifact
-        uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v2
         with:
-          name: artifact.jar
-          path: github-actions-java-maven/target/github-actions-java-maven.jar
-
+         name: Package
+         path: staging
+         
 
   test:
     name: Unit-test
@@ -48,19 +50,16 @@ jobs:
     needs: [  ]
     steps:
       - uses: actions/checkout@v2
+      
       - name: Set up JDK 11 for testing
         uses: actions/setup-java@v2
         with:
           java-version: '11'
           distribution: 'temurin'
           cache: maven
+          
       - name: Run maven tests
         run: mvn clean test --file pom.xml
-      - name: Build Java packages for docker
-        run: mvn -B -Pgithub package --file pom.xml
-        env:
-          # WORKFLOW_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
   docker:
@@ -83,7 +82,7 @@ jobs:
       - name: Build Java packages for docker
         run: mvn -B -Pgithub package --file pom.xml
         env:
-          # WORKFLOW_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+          WORKFLOW_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Build and run docker containers
