@@ -73,8 +73,12 @@ jobs:
           cache: maven
       - name: Install packages
         run: mvn install
+        env:
+          WORKFLOW_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
       - name: Build Java packages for docker
         run: mvn clean package --file pom.xml
+        env:
+          WORKFLOW_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
       - name: Build and run docker containers
         run: docker-compose -f "docker-compose.yml" up -d --build
       - name: Stop the containers
