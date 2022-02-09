@@ -45,7 +45,7 @@ jobs:
   test:
     name: Unit-test
     runs-on: [ ubuntu-latest ]
-    needs: [ artifact ]
+    needs: [  ]
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11 for testing
@@ -71,6 +71,8 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
           cache: maven
+      - name: Install packages
+        run: mvn install
       - name: Build Java packages for docker
         run: mvn clean package --file pom.xml
       - name: Build and run docker containers
