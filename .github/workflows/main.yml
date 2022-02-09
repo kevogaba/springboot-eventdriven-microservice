@@ -33,7 +33,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and test projects
-        working-directory: github-actions-java-maven
+        # working-directory: github-actions-java-maven
         run: mvn -B verify
       - name: Upload Maven build artifact
         uses: actions/upload-artifact@v2
@@ -62,7 +62,7 @@ jobs:
     name: Create Docker Images
     runs-on: [ ubuntu-latest ]
     timeout-minutes: 10
-    needs: [ test, artifact ]
+    needs: [  ]
     steps:
       - uses: actions/checkout@v2
       - name: Set up Java for Docker Images
