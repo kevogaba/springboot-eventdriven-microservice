@@ -62,6 +62,9 @@ jobs:
     name: Create Docker Images
     runs-on: [ ubuntu-latest ]
     timeout-minutes: 10
+    permissions:
+      contents: read
+      packages: read
     needs: [  ]
     steps:
       - uses: actions/checkout@v2
