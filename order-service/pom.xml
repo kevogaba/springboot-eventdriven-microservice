@@ -96,6 +96,7 @@
 			<artifactId>common-service</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<!--
 		<dependency>
 	    		<groupId>com.github.kevogaba.springboot-eventdriven-microservice</groupId>
 	    		<artifactId>common-service</artifactId>
@@ -106,6 +107,7 @@
 	    		<artifactId>common-service</artifactId>
 	    		<version>0.1</version>
 		</dependency>
+		-->
 	</dependencies>
 
 	<dependencyManagement>
