@@ -32,10 +32,6 @@
             </repositories>
         </profile>
     </profiles>
-	
-    <activeProfiles>
-   	<activeProfile>github</activeProfile>
-    </activeProfiles>
     
     <modules>
         <module>common-service</module>
