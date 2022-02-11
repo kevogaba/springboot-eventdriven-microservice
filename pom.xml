@@ -18,7 +18,7 @@
                     <releases><enabled>true</enabled></releases>
                     <snapshots><enabled>true</enabled></snapshots>
                 </repository>
-	         <repository>
+	        <repository>
 		    <id>jitpack.io</id>
 		    <url>https://jitpack.io</url>
 		</repository>
@@ -32,6 +32,10 @@
             </repositories>
         </profile>
     </profiles>
+	
+    <activeProfiles>
+   	<activeProfile>github</activeProfile>
+    </activeProfiles>
     
     <modules>
         <module>common-service</module>
