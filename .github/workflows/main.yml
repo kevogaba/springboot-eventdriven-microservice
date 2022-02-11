@@ -1,6 +1,3 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
-
 name: Event-driven microservices CI
 
 on:
@@ -33,16 +30,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and test projects
-        run: mvn --batch-mode --update-snapshots verify
-        
-      - run: mkdir staging
-      
+        # working-directory: github-actions-java-maven
+        run: mvn -B verify
       - name: Upload Maven build artifact
-      - uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v2
         with:
-         name: Package
-         path: staging
-         
+          name: artifact.jar
+          path: github-actions-java-maven/target/github-actions-java-maven.jar
+
 
   test:
     name: Unit-test
@@ -50,16 +45,19 @@ jobs:
     needs: [  ]
     steps:
       - uses: actions/checkout@v2
-      
       - name: Set up JDK 11 for testing
         uses: actions/setup-java@v2
         with:
           java-version: '11'
           distribution: 'temurin'
           cache: maven
-          
       - name: Run maven tests
         run: mvn clean test --file pom.xml
+      - name: Build Java packages for docker
+        run: mvn -B -Pgithub package --file pom.xml
+        env:
+          # WORKFLOW_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
   docker:
@@ -82,7 +80,7 @@ jobs:
       - name: Build Java packages for docker
         run: mvn -B -Pgithub package --file pom.xml
         env:
-          WORKFLOW_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+          # WORKFLOW_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Build and run docker containers
@@ -91,5 +89,3 @@ jobs:
       - name: Stop the containers
         if: always()
         run: docker-compose -f "docker-compose.yml" down
-
-
