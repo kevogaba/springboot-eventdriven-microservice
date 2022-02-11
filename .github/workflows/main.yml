@@ -52,7 +52,7 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Install dependencies
-        run: mvn claen install --file pom.xml
+        run: mvn clean install --file pom.xml
       - name: Run maven tests
         run: mvn clean test --file pom.xml
       - name: Build Java packages for docker
