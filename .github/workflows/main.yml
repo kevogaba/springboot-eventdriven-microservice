@@ -53,6 +53,9 @@ jobs:
           cache: maven
       - name: Install dependencies
         run: mvn clean install --file pom.xml
+        env:
+          WORKFLOW_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Run maven tests
         run: mvn clean test --file pom.xml
       - name: Build Java packages for docker
