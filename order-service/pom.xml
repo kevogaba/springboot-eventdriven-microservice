@@ -73,6 +73,11 @@
 			<artifactId>common-service</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+	    		<groupId>com.github.kevogaba</groupId>
+	    		<artifactId>https://github.com/kevogaba/common-service</artifactId>
+	    		<version>master-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>
