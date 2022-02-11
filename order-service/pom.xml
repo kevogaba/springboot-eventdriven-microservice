@@ -95,17 +95,19 @@
         <repositories>
         	<repository>
                 	<id>central</id>
+			<name>central</name>
                     	<url>https://repo1.maven.org/maven2</url>
                     	<releases><enabled>true</enabled></releases>
                     	<snapshots><enabled>true</enabled></snapshots>
                 </repository>
-	         <repository>
+	        <repository>
 		    	<id>jitpack.io</id>
+			<name>jitpack</name>
 		    	<url>https://jitpack.io</url>
 		</repository>
                 <repository>
                     	<id>github</id>
-                    	<name>kevogaba</name>
+                    	<name>github package</name>
                     	<url>https://maven.pkg.github.com/kevogaba/springboot-eventdriven-microservice</url>
                     	<snapshots><enabled>true</enabled></snapshots>
                     	<releases><enabled>true</enabled></releases>
