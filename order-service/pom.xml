@@ -67,13 +67,12 @@
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 			<version>31.0.1-jre</version>
-		</dependency>
-		<!--
+		</dependency>		
 		<dependency>
 			<groupId>com.kevogaba</groupId>
 			<artifactId>common-service</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-		</dependency> -->
+		</dependency>
 		<dependency>
 	    		<groupId>com.github.kevogaba</groupId>
 	    		<artifactId>common-service</artifactId>
@@ -92,31 +91,26 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-	
-	<profiles>
-        	<profile>
-     	       		<id>github</id>
-        	    	<repositories>
-                		<repository>
-                    			<id>central</id>
-                    			<url>https://repo1.maven.org/maven2</url>
-                    			<releases><enabled>true</enabled></releases>
-                    			<snapshots><enabled>true</enabled></snapshots>
-                		</repository>
-	         		<repository>
-		    			<id>jitpack.io</id>
-		    			<url>https://jitpack.io</url>
-				</repository>
-                		<repository>
-                    			<id>github</id>
-                    			<name>kevogaba</name>
-                    			<url>https://maven.pkg.github.com/kevogaba/springboot-eventdriven-microservice</url>
-                    			<snapshots><enabled>true</enabled></snapshots>
-                    			<releases><enabled>true</enabled></releases>
-                		</repository>
-            		</repositories>
-        	</profile>
-    	</profiles>
+
+        <repositories>
+        	<repository>
+                	<id>central</id>
+                    	<url>https://repo1.maven.org/maven2</url>
+                    	<releases><enabled>true</enabled></releases>
+                    	<snapshots><enabled>true</enabled></snapshots>
+                </repository>
+	         <repository>
+		    	<id>jitpack.io</id>
+		    	<url>https://jitpack.io</url>
+		</repository>
+                <repository>
+                    	<id>github</id>
+                    	<name>kevogaba</name>
+                    	<url>https://maven.pkg.github.com/kevogaba/springboot-eventdriven-microservice</url>
+                    	<snapshots><enabled>true</enabled></snapshots>
+                    	<releases><enabled>true</enabled></releases>
+               	</repository>
+        </repositories>
 
 	<build>
 		<plugins>
