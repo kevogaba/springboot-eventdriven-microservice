@@ -91,6 +91,31 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	
+	<profiles>
+        	<profile>
+     	       		<id>github</id>
+        	    	<repositories>
+                		<repository>
+                    			<id>central</id>
+                    			<url>https://repo1.maven.org/maven2</url>
+                    			<releases><enabled>true</enabled></releases>
+                    			<snapshots><enabled>true</enabled></snapshots>
+                		</repository>
+	         		<repository>
+		    			<id>jitpack.io</id>
+		    			<url>https://jitpack.io</url>
+				</repository>
+                		<repository>
+                    			<id>github</id>
+                    			<name>kevogaba</name>
+                    			<url>https://maven.pkg.github.com/kevogaba/springboot-eventdriven-microservice</url>
+                    			<snapshots><enabled>true</enabled></snapshots>
+                    			<releases><enabled>true</enabled></releases>
+                		</repository>
+            		</repositories>
+        	</profile>
+    	</profiles>
 
 	<build>
 		<plugins>
