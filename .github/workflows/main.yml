@@ -52,7 +52,7 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Install dependencies
-        run: mvn clean install --file pom.xml
+        run: mvn -Pgithub clean install --file pom.xml
         env:
           WORKFLOW_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
