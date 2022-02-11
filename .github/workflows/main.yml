@@ -51,6 +51,8 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
           cache: maven
+      - name: Install dependencies
+        run: mvn claen install --file pom.xml
       - name: Run maven tests
         run: mvn clean test --file pom.xml
       - name: Build Java packages for docker
@@ -63,7 +65,7 @@ jobs:
   docker:
     name: Create Docker Images
     runs-on: [ ubuntu-latest ]
-    timeout-minutes: 10
+    # timeout-minutes: 10
     permissions:
       contents: read
       packages: write
